@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+   <html lang="en">
+           <head>
+                   <meta charset="UTF-8">
+                   <title>MY APP</title>
+           </head>
+           <body>
+		   <h1>Container Request Form</h1>
+
+<form action="/buildrequest" method="POST">
+  Select CPU: <select name="cpu">
+<option value="1">1</option>
+<option value="2">2</option>
+<option value="3">3</option>
+<option value="4">4</option>
+</select><br>
+Select RAM: <select name="ram">
+<option value="256">256</option>
+<option value="512">512</option>
+<option value="1024">1024</option>
+<option value="2048">2048</option>
+</select><br>
+Select Volume Size (GB): <select name="vol">
+<option value="1">1</option>
+<option value="5">5</option>
+<option value="10">10</option>
+<option value="50">50</option>
+</select><br>
+Select Base Image: <select name="img">
+<option value="rocker/rstudio-stable:3.4.1">RStudio</option>
+<option value="iPython">iPython</option>
+<option value="jupyter/scipy-notebook">Jupyter</option>
+<option value="Custom-ABC">Custom-ABC</option>
+</select><br>
+Enter Git Repo Path:<input type="text" name="gitrepo"><br>
+
+                          <button type="submit">Submit</button>
+                  </form>
+<br>
+<h1>Advanced Dockerfile</h1><br>
+<form action="/createdockerfile" method="POST">
+Base Image:<input type="text" name="base_image"><br>
+<input type="checkbox" name="add_check" value="true"> <b>Inject Files</b><br>
+Add files from:<input type="text" name="add_from"><br>
+Add files to:<input type="text" name="add_to"><br>
+<input type="checkbox" name="cmd_check" value="true"><b>Insert CMD at runtime</b><br>
+Add CMD:<input type="text" name="cmd"><br>
+Add Package: <select name="pkg_type_1">
+	<option value="apt">ubuntu/debian</option>
+		<option value="rpm">redhat/centos</option>
+		<option value="cran">R</option>
+		<option value="pip">Python</option>
+		<input type="text" name="pkg_1"><br>
+Startup Entry Point:<input type="text" name="entrypoint"></br>
+
+<button type="submit">Build DockerFile</button>
+ 									</form>
+          </body>
+ </html>
