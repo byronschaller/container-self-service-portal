@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 var request = require('request');
 var fs = require('fs');
-var toArray = require('lodash.toarray')
+
 
 const app = express();
 
@@ -23,18 +23,21 @@ request('http://localhost:8080/api/storage/test-repo', function (error, response
 		console.log('error:', error);
 		console.log('statusCode:', response && response.StatusCode);
 		console.log('body:', body);
-		var ret = body
-		var pret = JSON.parse(ret)
-
-		console.log('ret:', pret["children"])
-
-		var aPret = pret["children"]
-
-		var bPret = JSON.stringify(aPret)
-		console.log('array:', bPret["uri"])
-
+		var ret = JSON.parse(body)
+		var uriArray = []
+		//foreach(ret.children)
+		//console.log('ret:', ret.children)
+		Object.keys(ret.children).forEach(function(key){
+			Object.keys(ret.children[key]).forEach(function(key1){
+				if (key1 == "uri") {
+					uriArray.push(ret.children[key][key1])
+				}
+				console.log(key1 + '=' + ret.children[key][key1]);
+		 });
+		});
+				console.log(uriArray)
 				res.render('index.ejs', {
-					body: ret
+					packages: uriArray
 				})
 	})
 

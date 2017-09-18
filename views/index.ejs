@@ -33,8 +33,11 @@ Select Base Image: <select name="img">
 <option value="Custom-ABC">Custom-ABC</option>
 </select><br>
 Enter Git Repo Path:<input type="text" name="gitrepo"><br>
-Select Packages: <select name="package"></select><br>
-  <%- body.children %>
+Select Packages: <select name="package">
+  <% for(var i=0; i<packages.length; i++) {%>
+  <option value=<%= packages[i] %>><%=packages[i] %></option><br>
+<% } %>
+  </select><br>
                           <button type="submit">Submit</button>
                   </form>
 <br>
